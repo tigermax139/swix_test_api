@@ -3,8 +3,9 @@
 /**
  * Module dependencies.
  */
+require('../config'); // preload config from env
 
-const app = require('../app');
+const app = require('../config/express');
 const debug = require('debug')('swix-api:server');
 const http = require('http');
 
@@ -85,5 +86,6 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+  console.log('Listening on ' + bind); // for case when debug off
   debug('Listening on ' + bind);
 }
