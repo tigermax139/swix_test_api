@@ -18,7 +18,7 @@ app.use('/v1', v1Routes);
 module.exports = app;
 /*
 * TODO add swix service
-* TODO add parcer module
+* TODO add parser module
 * TODO add controller
 * TODO add swagger playground
 * */
