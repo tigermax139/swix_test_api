@@ -20,5 +20,5 @@ module.exports = app;
 * TODO add swix service
 * TODO add parcer module
 * TODO add controller
-* TODO add swagger playground?
+* TODO add swagger playground
 * */
