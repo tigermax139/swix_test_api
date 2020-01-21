@@ -1,11 +1,16 @@
+const _ = require('lodash');
+const SBServiceModule = require('../modules/sbevents.module')();
+
 exports.getEvents = async function (req, res, next) {
     try {
-        // TODO service call here
-        res.json({
-            'hello': 'world'
+        const resultStream = await SBServiceModule.getEventsJson({
+            filtering: _(req.query).omit(['keywords']).keys().valueOf(),
+            keywords: req.query.keywords,
+            onlyEn: req.route.path.endsWith('en'),
         });
-        next();
+        resultStream.pipe(res);
     } catch (e) {
         next(e);
     }
 };
+
