@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-require('../config'); // preload config from env
+const config = require('../config'); // preload config from env
 
 const app = require('../config/express');
 const debug = require('debug')('swix-api:server');
@@ -12,7 +12,7 @@ const http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(config.PORT);
 app.set('port', port);
 
 /**
@@ -86,6 +86,8 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('Listening on ' + bind); // for case when debug off
+  if (!config.inDebug) {
+    console.info('Listening on ' + bind); // for case when debug off log port
+  }
   debug('Listening on ' + bind);
 }
