@@ -6,7 +6,10 @@ const controller = require('../../controllers/sbevents.controller');
 
 const router = new express.Router();
 
-router.route('/')
+router.route('/sbevents')
+    .get(validate(rules.getEventsSchema), controller.getEvents);
+
+router.route('/sbeventsen')
     .get(validate(rules.getEventsSchema), controller.getEvents);
 
 module.exports = router;
